@@ -1,0 +1,63 @@
+/* ===========================================================================
+   CATS , responsive + reduced-motion
+   =========================================================================== */
+
+/* collapse the 4-panel window progressively:
+   drop the artifact panel, then the notes list, then stack editor + chat */
+@media (max-width: 1000px) {
+    .window__body {
+        grid-template-columns: 150px 1fr 300px;
+    }
+    .artifactpanel { display: none; }
+}
+
+@media (max-width: 760px) {
+    .window__body {
+        grid-template-columns: 1fr 290px;
+    }
+    .sidebar { display: none; }
+}
+
+@media (max-width: 600px) {
+    .window__body {
+        grid-template-columns: 1fr;
+    }
+    .editor { border-right: none; border-bottom: 1px solid var(--border); }
+    .editor__code { font-size: 0.74rem; }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .tools__row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+    .tools__row dd::before { content: ""; }
+
+    .section { padding: 64px 0; }
+    .hero { padding: 48px 0 40px; }
+}
+
+@media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .footer { justify-content: center; text-align: center; }
+}
+
+/* honor reduced-motion: kill the blink + smooth scroll + hover lifts */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .status__big .cursor {
+        animation: none;
+        opacity: 1;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    * {
+        transition-duration: 0.001ms !important;
+    }
+}

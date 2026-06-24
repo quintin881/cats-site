@@ -1,0 +1,470 @@
+/* ===========================================================================
+   CATS , hero + the mock app window (the signature element)
+   Modeled on the real 4-panel app: notes list | editor | artifact | chat,
+   with a full-width top bar (logo + settings/send).
+   =========================================================================== */
+
+.hero {
+    padding: 80px 0 64px;
+    text-align: center;
+}
+
+.hero__title {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    font-size: clamp(3.5rem, 14vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin: 0;
+    color: var(--text-primary);
+    text-shadow: 0 0 16px #cc35d44d;
+}
+
+.hero__title .paw {
+    font-size: 0.42em;
+    vertical-align: super;
+    margin-left: 0.15em;
+    text-shadow: none;
+    filter: drop-shadow(0 0 5px #cc35d466);
+}
+
+.hero__expand {
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 2.4vw, 1.05rem);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin: 18px 0 0;
+}
+
+.hero__tagline {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--text-primary);
+    margin: 14px 0 0;
+}
+
+.hero__tagline b {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* ---- mock app window ----------------------------------------------------- */
+
+.window {
+    margin: 56px auto 0;
+    max-width: 1080px;
+    text-align: left;
+    background: var(--cffy-theme-surface-tonal-a0);
+    border: 1px solid var(--cffy-theme-primary-a0);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow:
+        var(--glow-accent),
+        0 24px 70px rgba(0, 0, 0, 0.6);
+}
+
+/* top app bar: logo left, settings/send right */
+.window__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border);
+}
+
+.window__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+}
+
+.window__brand .paw {
+    color: var(--accent);
+}
+
+.window__actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    border-radius: var(--radius-sm);
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-light);
+    color: var(--text-primary);
+}
+
+.btn--accent {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0a0a;
+    font-weight: 600;
+}
+
+/* four-panel body */
+.window__body {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr 320px;
+    min-height: 440px;
+}
+
+.panel {
+    min-width: 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.panel:last-child { border-right: none; }
+
+.panel__head {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 10px 12px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+}
+
+.panel__head .spacer { margin-left: auto; }
+
+.panel__head .mini {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    opacity: 0.8;
+}
+
+/* --- sidebar / notes list --- */
+.sidebar { background: var(--bg-medium); }
+
+.sidebar__search {
+    margin: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 6px 9px;
+}
+
+.tree {
+    list-style: none;
+    margin: 0;
+    padding: 0 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+}
+
+.tree li {
+    padding: 5px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.tree li .ic { opacity: 0.7; flex: none; }
+
+.tree li.is-active {
+    background: var(--cffy-theme-surface-tonal-a10);
+    color: var(--text-primary);
+}
+
+.tree li.is-active .ic { opacity: 1; }
+
+/* --- editor --- */
+.editor { background: var(--cffy-theme-surface-a0); }
+
+.editor__code {
+    margin: 0;
+    padding: 12px 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    overflow: hidden;
+    counter-reset: ln;
+    flex: 1;
+}
+
+.editor__code .row {
+    display: flex;
+    align-items: baseline;
+}
+
+.editor__code .row::before {
+    counter-increment: ln;
+    content: counter(ln);
+    flex: none;
+    width: 34px;
+    color: var(--cffy-theme-surface-a30);
+    text-align: right;
+    padding-right: 12px;
+    user-select: none;
+}
+
+.editor__code .row > span {
+    min-width: 0;
+    padding-right: 12px;
+    white-space: pre-wrap;
+    word-break: normal;
+    overflow-wrap: anywhere;
+}
+
+.tok-h    { color: var(--cffy-theme-primary-a30); font-weight: 700; }
+.tok-task { color: var(--cffy-theme-success-a0); }
+.tok-todo { color: var(--cffy-theme-warning-a0); }
+.tok-code { color: var(--cffy-theme-info-a0); }
+.tok-dim  { color: var(--text-secondary); }
+
+/* --- artifact panel --- */
+.artifactpanel { background: var(--cffy-theme-surface-a0); }
+
+.artifactpanel__stage {
+    flex: 1;
+    margin: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-medium);
+    padding: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    overflow: hidden;
+}
+
+.artifactpanel__title {
+    color: var(--accent);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* simple css "mermaid" node chain */
+.flow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.flow .node {
+    border: 1px solid var(--cffy-theme-primary-a0);
+    border-radius: var(--radius-sm);
+    background: var(--cffy-theme-surface-tonal-a0);
+    color: var(--text-primary);
+    padding: 5px 10px;
+}
+
+.flow .edge { color: var(--cffy-theme-surface-a40); padding-left: 14px; }
+
+/* --- chat panel --- */
+.chat { background: var(--cffy-theme-surface-tonal-a0); }
+
+.chat__select {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.chat__name {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--text-primary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 6px 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat__name .chev { color: var(--text-secondary); }
+
+.chat__iconbtn {
+    width: 30px;
+    border: 1px solid var(--border);
+    background: var(--bg-input);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    display: grid;
+    place-items: center;
+    font-size: 0.78rem;
+}
+
+.chat__stream {
+    flex: 1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}
+
+/* user bubble: magenta pill, right aligned */
+.bubble {
+    align-self: flex-end;
+    max-width: 80%;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 0.82rem;
+    padding: 7px 12px;
+    border-radius: 14px 14px 4px 14px;
+}
+
+/* thinking collapsible */
+.thinking {
+    border-left: 2px solid var(--accent);
+    background: var(--bg-medium);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 7px 11px;
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.thinking .chev { font-style: normal; margin-right: 4px; }
+
+/* assistant message */
+.reply {
+    font-size: 0.83rem;
+    line-height: 1.55;
+    color: var(--text-primary);
+}
+
+.reply b { color: var(--text-primary); }
+
+.reply ol {
+    margin: 8px 0 0;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.reply ol code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    color: var(--cffy-theme-primary-a40);
+}
+
+.reply .ic { margin-right: 4px; }
+
+/* toolcall pill inside the stream */
+.toolcall {
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--cffy-theme-success-a0);
+    background: var(--bg-medium);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 4px 8px;
+}
+
+.toolcall .arrow { color: var(--text-secondary); }
+
+/* chat composer + model row */
+.chat__compose {
+    margin: 0 10px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.chat__compose .caret {
+    width: 1px;
+    height: 15px;
+    background: var(--accent);
+    display: inline-block;
+    margin-left: 2px;
+}
+
+.chat__modelrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.chat__model {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-primary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 6px 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat__model .chev { color: var(--text-secondary); }
+
+.chat__think {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.chat__think .box {
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--cffy-theme-surface-a40);
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/* ---- CTA under the window ------------------------------------------------ */
+
+.hero__cta {
+    margin: 44px 0 0;
+    text-align: center;
+}
+
+.hero__cta a {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.hero__cta a:hover {
+    color: var(--accent);
+    border-color: var(--accent-hover);
+}

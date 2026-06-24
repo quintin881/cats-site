@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CATS, Collaborative AI Task System</title>
+    <meta name="description"
+        content="CATS is a desktop notes app i'm building on Electron. it's a Monaco editor wired to a real folder of markdown files, with Claude built into the right panel. still in development." />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- social preview -->
+    <meta property="og:title" content="CATS, Collaborative AI Task System" />
+    <meta property="og:description" content="Your notes. Your AI. Your folder. still in development." />
+    <meta property="og:type" content="website" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- static favicon fallback (main.js upgrades this) -->
+    <link rel="icon" type="image/svg+xml" href="assets/cat-icon.svg" />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+    <!-- ===================================================================
+         1. HERO
+         =================================================================== -->
+    <header class="hero">
+        <div class="wrap">
+            <h1 class="hero__title">CATS<span class="paw">🐾</span></h1>
+            <p class="hero__expand">Collaborative AI Task System</p>
+            <p class="hero__tagline">Your notes. Your AI. Your <b>folder</b>.</p>
+
+            <!-- ---- mock app window (the signature element) ---- -->
+            <section class="window" aria-label="CATS application preview">
+                <!-- top app bar -->
+                <div class="window__bar">
+                    <span class="window__brand"><span class="paw" aria-hidden="true">🐾</span> CATS</span>
+                    <div class="window__actions">
+                        <span class="btn">settings</span>
+                        <span class="btn btn--accent">send</span>
+                    </div>
+                </div>
+
+                <div class="window__body">
+                    <!-- notes list -->
+                    <aside class="panel sidebar">
+                        <div class="panel__head">notes <span class="spacer"></span><span class="mini" aria-hidden="true">📁</span><span class="mini" aria-hidden="true">⟳</span></div>
+                        <div class="sidebar__search">Search notes…</div>
+                        <ul class="tree">
+                            <li><span class="ic">📄</span> directX.md</li>
+                            <li><span class="ic">🛒</span> groceryRun.md</li>
+                            <li><span class="ic">📄</span> random.md</li>
+                            <li class="is-active"><span class="ic">📄</span> SapientEngineTODO.md</li>
+                            <li><span class="ic">💪</span> WorkoutPushDay.md</li>
+                        </ul>
+                    </aside>
+
+                    <!-- editor -->
+                    <main class="panel editor">
+                        <div class="panel__head">notes</div>
+                        <pre class="editor__code" aria-label="SapientEngineTODO.md contents"><div class="row"><span class="tok-h"># Sapient Engine TODO</span></div><div class="row"><span></span></div><div class="row"><span class="tok-h">## Now</span></div><div class="row"><span class="tok-task">- [x]</span><span> ECS scene graph</span></div><div class="row"><span class="tok-task">- [x]</span><span> <span class="tok-code">directX.md</span> notes synced</span></div><div class="row"><span class="tok-todo">- [ ]</span><span> frustum culling pass</span></div><div class="row"><span></span></div><div class="row"><span class="tok-h">## Next</span></div><div class="row"><span class="tok-todo">- [ ]</span><span> shadow atlas</span></div><div class="row"><span class="tok-todo">- [ ]</span><span> hot-reload shaders</span></div><div class="row"><span class="tok-dim">&gt; ask CATS to diagram the pipeline</span></div></pre>
+                    </main>
+
+                    <!-- artifact panel -->
+                    <section class="panel artifactpanel" aria-label="artifact">
+                        <div class="panel__head">artifact</div>
+                        <div class="artifactpanel__stage">
+                            <span class="artifactpanel__title">render-pipeline.mermaid</span>
+                            <div class="flow">
+                                <div class="node">ECS update</div>
+                                <div class="edge" aria-hidden="true">↓</div>
+                                <div class="node">frustum cull</div>
+                                <div class="edge" aria-hidden="true">↓</div>
+                                <div class="node">shadow pass</div>
+                                <div class="edge" aria-hidden="true">↓</div>
+                                <div class="node">present</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- chat panel -->
+                    <aside class="panel chat">
+                        <div class="panel__head">chat</div>
+
+                        <div class="chat__select">
+                            <span class="chat__name">Chat 2 <span class="chev" aria-hidden="true">▾</span></span>
+                            <span class="chat__iconbtn" aria-hidden="true">＋</span>
+                            <span class="chat__iconbtn" aria-hidden="true">🗑</span>
+                        </div>
+
+                        <div class="chat__stream">
+                            <div class="bubble">hello can you see my notes?</div>
+
+                            <div class="thinking"><span class="chev" aria-hidden="true">▸</span> Thinking (click to expand)</div>
+
+                            <div class="reply">
+                                yes, i can see your notes folder. you have <b>5 notes</b>:
+                                <ol>
+                                    <li><span class="ic" aria-hidden="true">📄</span> <code>directX.md</code></li>
+                                    <li><span class="ic" aria-hidden="true">🛒</span> <code>groceryRun.md</code></li>
+                                    <li><span class="ic" aria-hidden="true">📄</span> <code>random.md</code></li>
+                                    <li><span class="ic" aria-hidden="true">📄</span> <code>SapientEngineTODO.md</code></li>
+                                    <li><span class="ic" aria-hidden="true">💪</span> <code>WorkoutPushDay.md</code></li>
+                                </ol>
+                            </div>
+
+                            <div class="toolcall">list_notes <span class="arrow">→</span> 5 found</div>
+                        </div>
+
+                        <div class="chat__compose">Reply to CATS…<span class="caret" aria-hidden="true"></span></div>
+
+                        <div class="chat__modelrow">
+                            <span class="chat__model">Sonnet 4.6 <span class="chev" aria-hidden="true">▾</span></span>
+                            <span class="chat__think"><span class="box" aria-hidden="true"></span> thinking</span>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- single CTA -->
+            <p class="hero__cta">
+                <a href="https://github.com/quintin881" target="_blank" rel="noopener">coming soon, follow the build</a>
+            </p>
+        </div>
+    </header>
+
+    <!-- ===================================================================
+         2. WHAT IT IS
+         =================================================================== -->
+    <section class="section" id="what">
+        <div class="wrap">
+            <p class="eyebrow">what it is</p>
+            <h2 class="section__title">a notes app i actually use</h2>
+            <p class="section__sub">it's a notes list, an editor, an artifact panel and a chat, all running over a real folder of markdown that Claude can actually read.</p>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="card__no">01 / notes</div>
+                    <h3 class="card__title">notes</h3>
+                    <p class="card__body">it's a Monaco editor (the same one inside VS Code) hooked up to a real folder of <code>.md</code> files. it auto-saves on every keystroke and there's no weird proprietary format, just your files.</p>
+                </article>
+
+                <article class="card">
+                    <div class="card__no">02 / claude</div>
+                    <h3 class="card__title">claude, built in</h3>
+                    <p class="card__body">the chat lives in the right panel and streams as it goes, with a model picker, a thinking toggle and a stop button. you can keep multiple chats per folder and they all save locally.</p>
+                </article>
+
+                <article class="card">
+                    <div class="card__no">03 / artifacts</div>
+                    <h3 class="card__title">artifacts</h3>
+                    <p class="card__body">Claude can make and edit artifacts like code, mermaid diagrams and structured output. they get rendered, you can zoom in on them, and they save per folder.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================
+         3. FEATURE GLIMPSE — what Claude can see
+         =================================================================== -->
+    <section class="section" id="tools">
+        <div class="wrap">
+            <p class="eyebrow">what claude can see</p>
+            <h2 class="section__title">it works your actual folder, not a sandbox</h2>
+            <p class="section__sub">every tool is scoped to the folder you opened, and nothing leaves it.</p>
+
+            <div class="tools">
+                <p class="tools__label">claude's tools, what it knows about your workspace</p>
+                <dl class="tools__list">
+                    <div class="tools__row">
+                        <dt>read_note</dt>
+                        <dd>reads your currently open note</dd>
+                    </div>
+                    <div class="tools__row">
+                        <dt>list_notes</dt>
+                        <dd>lists every note in the folder</dd>
+                    </div>
+                    <div class="tools__row">
+                        <dt>read_note_by_path</dt>
+                        <dd>reads any note by path</dd>
+                    </div>
+                    <div class="tools__row">
+                        <dt>create_artifact</dt>
+                        <dd>Claude makes a new artifact</dd>
+                    </div>
+                    <div class="tools__row">
+                        <dt>update_artifact</dt>
+                        <dd>Claude edits an existing one</dd>
+                    </div>
+                    <div class="tools__row">
+                        <dt>list_artifacts</dt>
+                        <dd>Claude checks what it's already made</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================
+         4. STATUS STRIP
+         =================================================================== -->
+    <section class="status" aria-label="Project status">
+        <p class="status__big">in development<span class="cursor">_</span></p>
+        <p class="status__sub">built by one person, it ships when it's ready.</p>
+    </section>
+
+    <!-- ===================================================================
+         5. FOOTER
+         =================================================================== -->
+    <footer class="footer">
+        <span>CATS, Collaborative AI Task System</span>
+        <a href="https://github.com/quintin881" target="_blank" rel="noopener">quintin881</a>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

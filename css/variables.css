@@ -1,0 +1,59 @@
+/* ===========================================================================
+   CATS , design tokens
+   Single source of truth for colors, radii, spacing and type.
+   =========================================================================== */
+
+:root {
+    /* primary (magenta) */
+    --cffy-theme-primary-a0: #cc35d4;
+    --cffy-theme-primary-a10: #d351d9;
+    --cffy-theme-primary-a20: #d969de;
+    --cffy-theme-primary-a30: #df7de3;
+    --cffy-theme-primary-a40: #e591e8;
+    --cffy-theme-primary-a50: #eaa4ec;
+
+    /* neutral surfaces */
+    --cffy-theme-surface-a0: #121212;
+    --cffy-theme-surface-a10: #252525;
+    --cffy-theme-surface-a20: #393939;
+    --cffy-theme-surface-a30: #4f4f4f;
+    --cffy-theme-surface-a40: #666666;
+    --cffy-theme-surface-a50: #7d7d7d;
+
+    /* tonal surfaces (slight purple tint) */
+    --cffy-theme-surface-tonal-a0: #221822;
+    --cffy-theme-surface-tonal-a10: #352b35;
+    --cffy-theme-surface-tonal-a20: #483f48;
+    --cffy-theme-surface-tonal-a30: #5d545d;
+    --cffy-theme-surface-tonal-a40: #726b72;
+    --cffy-theme-surface-tonal-a50: #888288;
+
+    /* semantic */
+    --cffy-theme-success-a0: #7dff95;
+    --cffy-theme-warning-a0: #ffbc5e;
+    --cffy-theme-danger-a0: #ff8080;
+    --cffy-theme-info-a0: #87d1ff;
+
+    /* aliases used throughout the page */
+    --bg-dark: #0a0a0a;
+    --bg-medium: var(--cffy-theme-surface-a0);
+    --bg-light: var(--cffy-theme-surface-a10);
+    --bg-input: var(--cffy-theme-surface-a20);
+    --accent: var(--cffy-theme-primary-a0);
+    --accent-hover: var(--cffy-theme-primary-a20);
+    --text-primary: #ededed;
+    --text-secondary: var(--cffy-theme-surface-a50);
+    --border: var(--cffy-theme-surface-a20);
+    --danger: var(--cffy-theme-danger-a0);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --gap: 8px;
+
+    /* type */
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    /* the one glow we reuse (kept subtle) */
+    --glow-accent: 0 0 12px #cc35d42e;
+}

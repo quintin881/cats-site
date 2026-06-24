@@ -1,0 +1,89 @@
+/* ===========================================================================
+   CATS , base / reset / layout primitives
+   =========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* faint magenta wash bleeding down from the top of the page */
+    background-image:
+        radial-gradient(900px 480px at 50% -120px, #cc35d418, transparent 70%);
+    background-repeat: no-repeat;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+code,
+kbd {
+    font-family: var(--font-mono);
+}
+
+::selection {
+    background: var(--cffy-theme-primary-a0);
+    color: #0a0a0a;
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+}
+
+.section {
+    padding: 96px 0;
+    border-top: 1px solid var(--border);
+}
+
+.section__title {
+    font-family: var(--font-mono);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+}
+
+.section__sub {
+    color: var(--text-secondary);
+    margin: 0 0 40px;
+    max-width: 60ch;
+}
+
+/* keyboard focus ring , visible, on brand */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
