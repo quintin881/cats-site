@@ -208,6 +208,32 @@
     </section>
 
     <!-- ===================================================================
+         3.5 PRIVACY / WHERE YOUR DATA LIVES
+         =================================================================== -->
+    <section class="section" id="privacy">
+        <div class="wrap">
+            <p class="eyebrow">your data</p>
+            <h2 class="section__title">it's local-first and it never phones home</h2>
+            <p class="section__sub">CATS has no server, no account and no cloud sync. i want to be straight about what that does and doesn't mean.</p>
+
+            <div class="facts">
+                <div class="facts__row">
+                    <span class="facts__tag">stays on your pc</span>
+                    <p>your notes, chats and artifacts are just files in the folder you picked. CATS never uploads them or syncs them anywhere, because there's no CATS server to sync to.</p>
+                </div>
+                <div class="facts__row">
+                    <span class="facts__tag">the one thing that leaves</span>
+                    <p>when you actually ask Claude something, that message goes straight from your computer to Anthropic's API using your own key. CATS is not a middleman, and i never see it. that part is just how any cloud AI works.</p>
+                </div>
+                <div class="facts__row">
+                    <span class="facts__tag">what anthropic does with it</span>
+                    <p>Anthropic doesn't train their models on what you send through the API, and they only hold onto it briefly to watch for abuse. nothing you write gets baked into a model.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================
          4. STATUS STRIP
          =================================================================== -->
     <section class="status" aria-label="Project status">
@@ -221,6 +247,7 @@
     <footer class="footer">
         <span>CATS, Collaborative AI Task System</span>
         <a href="https://github.com/quintin881" target="_blank" rel="noopener">quintin881</a>
+        <span>website largely ai generated, again im one person</span>
     </footer>
 
     <script src="js/main.js"></script>
